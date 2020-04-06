@@ -23,7 +23,7 @@ for dados in dados_tabela:
     ListaLigada.inserirLocal(int(dados[coluna_coordenada_x]), int(dados[coluna_coordenada_y]), int(dados[coluna_id_pessoa]))
 
 # Printa os locais no terminal
-ListaLigada.exibirLocais()
+# ListaLigada.exibirLocais()
 # Exporta os locais em um documento csv separado por linhas
 ListaLigada.escrever_csv()
 # Exibe a quantidade de Locais
