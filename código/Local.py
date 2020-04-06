@@ -18,7 +18,7 @@ class Local:
         self.contador_frequentadores += 1
 
     # função imprimirLocais, que imprime os Locais que já estão na lista
-    def imprimirLocais(self):
+    def exportarLocais(self):
         return self.coordenada_x, self.coordenada_y, self.contador_frequentadores
 
     def imprimirLocaisComPrint(self):

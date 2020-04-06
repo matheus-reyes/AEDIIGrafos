@@ -8,29 +8,32 @@ inicio = None
 quantidade = 0
 
 # Função inserirLocal, que insere um Local na lista
-def inserirLocal(coordenada_x, coordenada_y, id_pessoa):
-    global quantidade
-    global inicio
-    # Caso já tenham Locais na lista
-    if inicio:
-        ponteiro = inicio
-        # Enquanto o elemento tiver próximo na lista
-        while(ponteiro.prox):
-            # Caso já tenham locais iguais na lista, é adicionado idpessoa no vetor frequentadores e a função é retornada
-            if ponteiro.coordenada_x == coordenada_x and ponteiro.coordenada_y == coordenada_y:
-                ponteiro.adicionarFrequentador(id_pessoa)
-                return
-            ponteiro = ponteiro.prox
-        # Caso não tenham Locais iguais e não tenham mais próximos na lista, adiciona o novo local e ajusta o ponteiro prox anterior
-        Local(coordenada_x, coordenada_y)
-        ponteiro.prox = Local(coordenada_x, coordenada_y)
-        ponteiro.prox.adicionarFrequentador(id_pessoa)
-    # Caso ainda não tenham Locais na lista
+def inserirLocal(id_pessoa, coordenada_x, coordenada_y):
+    if coordenada_x == 0 and coordenada_y == 0:
+        return
     else:
-        Local(coordenada_x, coordenada_y)
-        inicio = Local(coordenada_x, coordenada_y)
-        inicio.adicionarFrequentador(id_pessoa)
-    quantidade = quantidade + 1
+        global quantidade
+        global inicio
+        # Caso já tenham Locais na lista
+        if inicio:
+            ponteiro = inicio
+            # Enquanto o elemento tiver próximo na lista
+            while(ponteiro.prox):
+                # Caso já tenham locais iguais na lista, é adicionado idpessoa no vetor frequentadores e a função é retornada
+                if ponteiro.coordenada_x == coordenada_x and ponteiro.coordenada_y == coordenada_y:
+                    ponteiro.adicionarFrequentador(id_pessoa)
+                    return
+                ponteiro = ponteiro.prox
+            # Caso não tenham Locais iguais e não tenham mais próximos na lista, adiciona o novo local e ajusta o ponteiro prox anterior
+            Local(coordenada_x, coordenada_y)
+            ponteiro.prox = Local(coordenada_x, coordenada_y)
+            ponteiro.prox.adicionarFrequentador(id_pessoa)
+        # Caso ainda não tenham Locais na lista
+        else:
+            Local(coordenada_x, coordenada_y)
+            inicio = Local(coordenada_x, coordenada_y)
+            inicio.adicionarFrequentador(id_pessoa)
+        quantidade = quantidade + 1
 
 # Função exibirLocais, que exibe os locais que já estão na lista
 def exibirLocais():
@@ -55,7 +58,7 @@ def escrever_csv():
         ponteiro = inicio
         contador = 0
         while(contador < quantidade):
-            linha = ponteiro.imprimirLocais()
+            linha = ponteiro.exportarLocais()
             writer.writerow(linha)
             ponteiro = ponteiro.prox
             contador = contador + 1
