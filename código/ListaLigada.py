@@ -49,7 +49,7 @@ def escrever_csv():
     global inicio
 
     # Tivemos que usar newline="" para evitar adicionar linhas desnecessárias
-    with open ('teste_saida.csv', 'w', newline='') as saida_csv:
+    with open ('dados/Tabela_Saida.csv', 'w', newline='') as saida_csv:
         writer = csv.writer(saida_csv)
         writer.writerow( ('X', 'Y', 'numero_pessoas') )
         ponteiro = inicio

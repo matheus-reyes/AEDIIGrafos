@@ -5,7 +5,7 @@ from Local import Local
 # Importa o módulo csv que contém métodos para ler e escrever dados csv
 import csv
 # Abre o arquivo tabela-teste.csv e o lê com 'read' depois armazena em entrada
-entrada_csv = open('Tabela_Virgulas.csv', 'r')
+entrada_csv = open('dados/Tabela_Virgulas.csv', 'r')
 # lê a variável entrada com o método reader e a armazena na variável dados
 dados_tabela = csv.reader(entrada_csv)
 # Ignora a primeira linha, que contêm os nomes das colunas
