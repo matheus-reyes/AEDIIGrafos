@@ -1,17 +1,10 @@
-# Hello Moretto
 # Importa a classe Grafo do documento Grafo.py
 from Grafo import Grafo
-print ("Começo")
 
 # Import o pacote csv
 import csv
 
-# Importa o módulo time que contém métodos para calcular tempo
-import time
-
 print ("Começou!")
-#inicia a contagem de tempo de execução
-ini = time.time()
 
 # Abre o arquivo Planilha_teste.csv e o lê com 'read' depois armazena em entrada_csv
 entrada_csv = open('EP3/dados/Planilha_teste.csv', 'r')
@@ -47,21 +40,22 @@ all_edges = [tuple(l) for l in all_edges]
 # print(all_edges)
 
 # Inicializa o construtor da classe Grafo e armazena na variável grafo
-grafo = Grafo(nodes, len(nodes))
+grafo = Grafo(len(nodes) + 1)
 
 # Cria as arestas
 for u,v in all_edges:
-    grafo.add_edge(u,v)
-
-#printa os nós com suas devidas conexões
-grafo.print_adj_list()
+    grafo.add_edge(int(u),int(v))
 
 # Fecha o documento
 entrada_csv.close()
 entrada_txt.close()
 
-cc = grafo.connectedComponents() 
-print("Following are connected components") 
+# Recebe os componentes conexos na variável cc
+cc = grafo.connectedComponents()
+# Deleta o primeiro componente, pois não existe pessoa com id 0, as pessoas começam com id 1
+del cc[0]
+# Exibe os componentes conexos
+print("Componentes Conexos: ") 
 print(cc) 
 
 # # Escreve no arquivo de saída os graus dos nós linha por linha
@@ -70,26 +64,24 @@ print(cc)
 #     a.writerows(map(lambda x: [x], cc))
 
 
-import csv
-
-with open("out.csv", "w", newline="") as f:
-    writer = csv.writer(f)
-    writer.writerows(cc)
+# with open("out.csv", "w", newline="") as f:
+#     writer = csv.writer(f)
+#     writer.writerows(cc)
 
 
-# nodes = [0, 1, 2, 3, 4, 5]
+# nodes = [3, 4, 5]
 
-# g = Grafo(nodes, len(nodes)); 
+# g = Graph(6); 
 
-# g.add_edge(1, 0) 
-# g.add_edge(2, 3) 
-# g.add_edge(3, 4) 
+# g.addEdge(4, 5) 
+# g.addEdge(3, 4) 
+
+# cc = g.connectedComponents() 
+# print("Following are connected components") 
+# print(cc) 
 
 
-# Calcula o tempo de execução ao final do processamento
+# # Calcula o tempo de execução ao final do processamento
 
-# Fim do Processamento
-print ("Acabou!")
-
-# Exibe na tela o tempo de processamento do código
-print("Tempo de execuçao (S): ", fim-ini)
+# # Fim do Processamento
+# print ("Acabou!")

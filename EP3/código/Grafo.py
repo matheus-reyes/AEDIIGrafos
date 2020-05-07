@@ -1,58 +1,61 @@
-#Hello Moretto para o EP3
-# Import o pacote csv
-import csv
-from collections import defaultdict
 
 class Grafo:
-    def __init__(self, Nodes, V): #construtor
-        self.V = V 
-        self.nodes = Nodes
-        self.adj = defaultdict(list)
-        for node in self.nodes:
-            self.adj[node] = []
 
-    def add_edge(self, u, v): #Adiciona aresta
+    # Construtor que recebe o número de vértices e inicia o vetor de adjacentes
+    def __init__(self, V):
+        self.V = V 
+        self.adj = [[] for i in range(V)] 
+
+    # Função que recebe dois vértices e cria uma aresta entre eles, adicionando-os em seus vértices de adjacentes
+    def add_edge(self, u, v): 
         self.adj[u].append(v)
         self.adj[v].append(u)
 
-    def print_adj_list (self): #printa relação entre nós
+    # Função que exibe na tela cada vértice e sua lista de adjacência
+    def print_adj_list (self): 
         for node in self.nodes:
             print (node, '->', self.adj[node])
 
-    #printa qtd de nós do grafo
+    # Função que exibe na tela a quantidade de vértices em cada lista de adjacência
     def quantidadeNos(self): 
         quantidade = []
         for node in self.nodes:
             quantidade.append(len(self.adj[node]))
         return quantidade
 
+    # Função que realiza a Depth-first search
     def DFSUtil(self, temp, v, visited): 
   
-        # Marca o vértice como visitado
+        # Marca o vértice passado como visitado
         visited[v] = True
   
-        # Store the vertex to list 
         # Salva o vértice na lista
         temp.append(v) 
   
-        # Repeat for all vertices adjacent 
-        # to this vertex v 
-        for i in self.adj[v]:             
-            if visited[i] == False: 
+        # Repete esse processo para os vértices adjacentes ao vértice passado 
+        for i in self.adj[v]: 
+           if visited[i] == False: 
                   
-                # Update the list 
+                # Faz isso com todos os vértices adjacentes 
                 temp = self.DFSUtil(temp, i, visited) 
+         
         return temp 
 
-    # in an undirected graph 
+        
+
+    # Função que Atualiza os componentes conexos do grafo
     def connectedComponents(self): 
+        # Vetor de vértices visitados e de componentes conexos respectivamente
         visited = [] 
-        cc = [] 
+        cc = []
+
+        # Inicializa o vetor de visitados com todos os valores igual a false
         for i in range(self.V): 
             visited.append(False) 
+
+        # Para cada vértice não visitado, chama a função de Depth-first search
         for v in range(self.V): 
             if visited[v] == False: 
                 temp = [] 
                 cc.append(self.DFSUtil(temp, v, visited)) 
         return cc 
-        
