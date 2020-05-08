@@ -31,15 +31,28 @@ class Grafo:
   
         # Salva o vértice na lista
         temp.append(v) 
+      
+        #gv (Guarda Visitados): Guarda o caminho feito
+        gv = []
+        gv.append(v)
+
+        # Repeat for all vertices adjacent 
+        # to this vertex v 
+        while (len(gv) != 0):
+            for i in self.adj[gv[len(gv)-1]]:             
+                if visited[i] == False:
+                    # Update the list 
+                    gv.append(i)
+                    visited[i] = True
+                    temp.append(i)
+                    #temp = self.DFSUtil(temp, i, visited) 
+            del(gv[len(gv)-1])
+        
+        return temp
+
+
   
-        # Repete esse processo para os vértices adjacentes ao vértice passado 
-        for i in self.adj[v]: 
-           if visited[i] == False: 
-                  
-                # Faz isso com todos os vértices adjacentes 
-                temp = self.DFSUtil(temp, i, visited) 
-         
-        return temp 
+       
 
         
 

@@ -6,10 +6,10 @@ import csv
 
 print ("Começou!")
 
-# Abre o arquivo Planilha_teste.csv e o lê com 'read' depois armazena em entrada_csv
-entrada_csv = open('EP3/dados/Planilha_teste.csv', 'r')
-# Abre o arquivo teste.txt e o lê com 'read' depois armazena em entrada_txt
-entrada_txt = open('EP3/dados/teste.txt', 'r')
+# Abre o arquivo Planilha_teste.csv e o lê com 'read' depois armazena em entrada_csv Ids_Pessoas
+entrada_csv = open('EP3/dados/Ids_Pessoas.csv', 'r')
+# Abre o arquivo teste.txt e o lê com 'read' depois armazena em entrada_txt Encontros
+entrada_txt = open('EP3/dados/Encontros.txt', 'r')
 
 # Pula as primeiras linhas da entrada referentes ao: número de vértices e arestas | nome da coluna 
 next(entrada_txt)
