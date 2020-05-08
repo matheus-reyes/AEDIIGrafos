@@ -36,25 +36,16 @@ class Grafo:
         gv = []
         gv.append(v)
 
-        # Repeat for all vertices adjacent 
-        # to this vertex v 
+        # Repete o processo para todos os vértices adjacentes
         while (len(gv) != 0):
             for i in self.adj[gv[len(gv)-1]]:             
                 if visited[i] == False:
-                    # Update the list 
                     gv.append(i)
                     visited[i] = True
                     temp.append(i)
-                    #temp = self.DFSUtil(temp, i, visited) 
             del(gv[len(gv)-1])
         
         return temp
-
-
-  
-       
-
-        
 
     # Função que Atualiza os componentes conexos do grafo
     def connectedComponents(self): 

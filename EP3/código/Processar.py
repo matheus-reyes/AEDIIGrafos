@@ -4,11 +4,16 @@ from Grafo import Grafo
 # Import o pacote csv
 import csv
 
-print ("Começou!")
+# Importa o módulo time que contém métodos para calcular tempo
+import time
 
-# Abre o arquivo Planilha_teste.csv e o lê com 'read' depois armazena em entrada_csv Ids_Pessoas
+print ("Começou!")
+#inicia a contagem de tempo de execução
+ini = time.time()
+
+# Abre o arquivo e o lê com 'read' depois armazena em entrada_csv Ids_Pessoas
 entrada_csv = open('EP3/dados/Ids_Pessoas.csv', 'r')
-# Abre o arquivo teste.txt e o lê com 'read' depois armazena em entrada_txt Encontros
+# Abre o arquivo e o lê com 'read' depois armazena em entrada_txt Encontros
 entrada_txt = open('EP3/dados/Encontros.txt', 'r')
 
 # Pula as primeiras linhas da entrada referentes ao: número de vértices e arestas | nome da coluna 
@@ -36,9 +41,6 @@ for linha in entrada_txt:
 # Converte para lista de tuplas
 all_edges = [tuple(l) for l in all_edges]
 
-# Printa as arestas  
-# print(all_edges)
-
 # Inicializa o construtor da classe Grafo e armazena na variável grafo
 grafo = Grafo(len(nodes) + 1)
 
@@ -54,34 +56,24 @@ entrada_txt.close()
 cc = grafo.connectedComponents()
 # Deleta o primeiro componente, pois não existe pessoa com id 0, as pessoas começam com id 1
 del cc[0]
-# Exibe os componentes conexos
-print("Componentes Conexos: ") 
-print(cc) 
 
-# # Escreve no arquivo de saída os graus dos nós linha por linha
-# with open('EP3/dados/Tabela_Saida.csv', 'w', newline='') as fp:
-#     a = csv.writer(fp, delimiter =',')
-#     a.writerows(map(lambda x: [x], cc))
+# vetor que armazenará o tamanho de vértices em cada componente
+quantidadeCC = []
 
+# adiciona as quantidades de cada componente
+for componente in cc:
+    quantidadeCC.append(len(componente))
 
-# with open("out.csv", "w", newline="") as f:
-#     writer = csv.writer(f)
-#     writer.writerows(cc)
+# Escreve no arquivo de saída as quantidades vértices por componentes linha por linha
+with open('EP3/dados/Tabela_Saida.csv', 'w', newline='') as fp:
+    a = csv.writer(fp, delimiter =',')
+    a.writerows(map(lambda x: [x], quantidadeCC))
 
+# Calcula o tempo de execução ao final do processamento
+fim = time.time()
 
-# nodes = [3, 4, 5]
+# Fim do Processamento
+print ("Acabou!")
 
-# g = Graph(6); 
-
-# g.addEdge(4, 5) 
-# g.addEdge(3, 4) 
-
-# cc = g.connectedComponents() 
-# print("Following are connected components") 
-# print(cc) 
-
-
-# # Calcula o tempo de execução ao final do processamento
-
-# # Fim do Processamento
-# print ("Acabou!")
+# Exibe na tela o tempo de processamento do código
+print("Tempo de execuçao (S): ", fim-ini)
