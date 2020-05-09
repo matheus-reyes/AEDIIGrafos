@@ -12,9 +12,9 @@ print ("Começou!")
 ini = time.time()
 
 # Abre o arquivo e o lê com 'read' depois armazena em entrada_csv Ids_Pessoas
-entrada_csv = open('EP3/dados/Ids_Pessoas.csv', 'r')
+entrada_csv = open('EP3/dados/ids_pessoas.csv', 'r')
 # Abre o arquivo e o lê com 'read' depois armazena em entrada_txt Encontros
-entrada_txt = open('EP3/dados/Encontros.txt', 'r')
+entrada_txt = open('EP3/dados/encontros.txt', 'r')
 
 # Pula as primeiras linhas da entrada referentes ao: número de vértices e arestas | nome da coluna 
 next(entrada_txt)
@@ -65,7 +65,7 @@ for componente in cc:
     quantidadeCC.append(len(componente))
 
 # Escreve no arquivo de saída as quantidades vértices por componentes linha por linha
-with open('EP3/dados/Tabela_Saida.csv', 'w', newline='') as fp:
+with open('EP3/dados/tabela_saida.csv', 'w', newline='') as fp:
     a = csv.writer(fp, delimiter =',')
     a.writerows(map(lambda x: [x], quantidadeCC))
 
