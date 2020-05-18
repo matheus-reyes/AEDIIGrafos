@@ -25,44 +25,42 @@ class Grafo:
     def adj_list (self):
         return self.adj_list
 
-    #printa qtd de nós do grafo
+    #printa quantdade de nós do grafo
     def quantidadeNos(self): 
         quantidade = []
         for node in self.nodes:
             quantidade.append(len(self.adj_list[node]))
         return quantidade
 
-    # finds shortest path between 2 nodes of a graph using BFS
+    # Função que encontra o menor caminho entre dois nós
     def bfs_shortest_path(self, graph, start, goal):
-        # keep track of explored nodes
+        # guarda o caminho dos nós explorados
         explored = []
-        # keep track of all the paths to be checked
+        # guarda o todos os caminhos a serem checados
         queue = [[start]]
 
-        # return path if start is goal
+        # Caso os vértices sejam iguais
         if start == goal:
-            return "That was easy! Start = goal"
+            return 0
 
-        # keeps looping until all possible paths have been checked
+        # mantem o loop até checar todas as possibilidades
         while queue:
-            # pop the first path from the queue
             path = queue.pop(0)
-            # get the last node from the path
+            # pega o ultimo nó
             node = path[-1]
             if node not in explored:
                 neighbours = graph[node]
-                # go through all neighbour nodes, construct a new path and
-                # push it into the queue
+                # vai visitar todos os caminhos possiveis pelos vizinhos
                 for neighbour in neighbours:
                     new_path = list(path)
                     new_path.append(neighbour)
                     queue.append(new_path)
-                    # return path if neighbour is goal
+                    # retorna o caminho se o vizinho é o objetivo
                     if neighbour == goal:
-                        return new_path
+                        return len(new_path) - 1
 
-                # mark node as explored
+                # marca o nó já visitado
                 explored.append(node)
 
-        # in case there's no path between the 2 nodes
-        return "So sorry, but a connecting path doesn't exist :("
+        # caso não haja nenhum caminho entre os nós
+        return 0
