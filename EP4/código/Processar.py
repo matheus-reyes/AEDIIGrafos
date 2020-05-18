@@ -65,10 +65,13 @@ contador2 = 1
 
 # Lista que armazena a quantidade de passos de cada conexão
 numeroPassos = []
+aux = 0;
 
 for vertices in nodes:
     for vertices2 in nodes:
-        numeroPassos.append(grafo.bfs_shortest_path(adjacentes, str(contador1), str(contador2)))
+        aux = grafo.bfs_shortest_path(adjacentes, str(contador1), str(contador2))
+        if aux != 0:
+            numeroPassos.append(aux)
         contador2 +=1
     contador2 = 1
     contador1 += 1
