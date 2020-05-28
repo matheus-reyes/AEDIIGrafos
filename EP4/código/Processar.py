@@ -12,26 +12,22 @@ print ("Começou!")
 #inicia a contagem de tempo de execução
 ini = time.time()
 
-# Abre o arquivo e o lê com 'read' depois armazena em entrada_csv Ids_Pessoas
-entrada_csv = open('EP4/dados/ids_pessoas.csv', 'r')
 # Abre o arquivo e o lê com 'read' depois armazena em entrada_txt Encontros
-entrada_txt = open('EP4/dados/gigante1.txt', 'r')
+entrada_txt = open('EP4/dados/traducao1.txt', 'r')
 
 # Pula as primeiras linhas da entrada referentes ao: número de vértices e arestas | nome da coluna 
 next(entrada_txt)   
 next(entrada_txt)
-next(entrada_csv)
-
-# Lê a variável entrada com o método reader e a armazena na variável dados
-dados_tabela = csv.reader(entrada_csv)
 
 # Cria as listas para os vértices e arestas
 nodes = []
 all_edges = []
+nos = 0
 
 # For que percorre a variável dados que contém todos os dados da tabela CSV
-for dados in dados_tabela:
-    nodes.append(dados[0])
+while nos < 61838:
+    nodes.append(str(nos))
+    nos += 1
 
 # For que percorre a variável linha que contém as arestas e atribui a all_edges
 for linha in entrada_txt:
@@ -60,20 +56,20 @@ adjacentes = {}
 for elemento in adj_list:
     adjacentes[elemento[0]] = elemento[1:]
 
-contador1 = 1
-contador2 = 1
+contador1 = 0
+contador2 = 0
 
 # Lista que armazena a quantidade de passos de cada conexão
 numeroPassos = []
-aux = 0;
+aux = 0
 
-for vertices in nodes:
-    for vertices2 in nodes:
+while contador1 < 61838:
+    while contador2 < 61838:
         aux = grafo.bfs_shortest_path(adjacentes, str(contador1), str(contador2))
         if aux != 0:
             numeroPassos.append(aux)
-        contador2 +=1
-    contador2 = 1
+        contador2 += 1
+    contador2 = contador1 + 1 
     contador1 += 1
 
 # Escreve no arquivo de saída as quantidades vértices por componentes linha por linha
