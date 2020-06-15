@@ -7,12 +7,15 @@ import csv
 # Importa o módulo time que contém métodos para calcular tempo
 import time
 
+# Importa o módulo pickle para auxiliar a exportação
+import pickle
+
 print ("Começou!")
 #inicia a contagem de tempo de execução
 ini = time.time()
 
 # Abre o arquivo e o lê com 'read' depois armazena em entrada_txt Encontros
-entrada_txt = open('EP5/dados/teste.txt', 'r')
+entrada_txt = open('EP5/dados/traducao3.txt', 'r')
 
 # Pula as primeiras linhas da entrada referentes ao: número de vértices e arestas | nome da coluna 
 next(entrada_txt)
@@ -24,7 +27,7 @@ all_edges = []
 
 nos = 0
 
-while nos < 11:
+while nos < 5181:
     nodes.append(str(nos))
     nos += 1
 
@@ -51,12 +54,17 @@ entrada_txt.close()
 grafo.SIR()
 
 # Exibe o número de passos com os dados da situação da pessoa
-print(grafo.saida_passos)
+saida_passos = (grafo.saida_passos)
 
-# # Escreve no arquivo de saída as quantidades vértices por componentes linha por linha
-# with open('EP3/dados/tabela_saida.csv', 'w', newline='') as fp:
-#     a = csv.writer(fp, delimiter =',')
-#     a.writerows(map(lambda x: [x], quantidadeCC))
+# Escreve no arquivo de saída a lista de listas do SIR
+# with open('EP5/dados/saida_09_02.pkl', 'wb') as f:
+#     pickle.dump(saida_passos, f)
+# f.close()
+
+# # Apenas para ler o arquivo de saída
+with open('EP5/dados/saida_06_05.pkl', 'rb') as fb:
+    mynewlist = pickle.load(fb)
+print(mynewlist)
 
 # Calcula o tempo de execução ao final do processamento
 fim = time.time()

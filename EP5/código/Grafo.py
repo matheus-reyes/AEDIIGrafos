@@ -9,8 +9,8 @@ class Grafo:
         self.estado = ['S' for i in range(V)]
         pacienteZero = random.randint(0, V)
         self.estado[pacienteZero] = 'I'
-        self.r = 0.3
-        self.c = 0.7
+        self.c = 0.9
+        self.r = 0.2
         self.passos = 0
         self.saida_passos = []
 
