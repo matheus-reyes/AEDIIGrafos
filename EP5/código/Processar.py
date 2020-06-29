@@ -15,7 +15,7 @@ print ("Começou!")
 ini = time.time()
 
 # Abre o arquivo e o lê com 'read' depois armazena em entrada_txt Encontros
-entrada_txt = open('EP5/dados/teste.txt', 'r')
+entrada_txt = open('EP5/dados/traducao3.txt', 'r')
 
 # Pula as primeiras linhas da entrada referentes ao: número de vértices e arestas | nome da coluna 
 next(entrada_txt)
@@ -27,7 +27,7 @@ all_edges = []
 
 nos = 0
 
-while nos < 11:
+while nos < 5181:
     nodes.append(str(nos))
     nos += 1
 
