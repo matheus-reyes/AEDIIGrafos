@@ -13,7 +13,7 @@ print ("Começou!")
 ini = time.time()
 
 # Abre o arquivo e o lê com 'read' depois armazena em entrada_txt Encontros
-entrada_txt = open('EP4/dados/traducao3.txt', 'r')
+entrada_txt = open('EP4/dados/cenario4.txt', 'r')
 
 # Pula as primeiras linhas da entrada referentes ao: número de vértices e arestas | nome da coluna 
 next(entrada_txt)   
@@ -25,7 +25,7 @@ all_edges = []
 nos = 0
 
 # For que percorre a variável dados que contém todos os dados da tabela CSV
-while nos < 5181:
+while nos < 101:
     nodes.append(str(nos))
     nos += 1
 
@@ -63,11 +63,9 @@ contador2 = 0
 numeroPassos = []
 aux = 0
 
-while contador1 < 5181:
-    while contador2 < 5181:
-        aux = grafo.bfs_shortest_path(adjacentes, str(contador1), str(contador2))
-        if aux != 0:
-            numeroPassos.append(aux)
+while contador1 < 101:
+    while contador2 < 101:
+        numeroPassos.append(grafo.bfs_shortest_path(adjacentes, str(contador1), str(contador2)))
         contador2 += 1
     contador2 = contador1 + 1 
     contador1 += 1
