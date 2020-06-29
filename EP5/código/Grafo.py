@@ -7,10 +7,10 @@ class Grafo:
         self.V = V 
         self.adj = [[] for i in range(V)] 
         self.estado = ['S' for i in range(V)]
-        pacienteZero = random.randint(0, V)
+        pacienteZero = random.randint(0, V - 1)
         self.estado[pacienteZero] = 'I'
-        self.c = 0.9
-        self.r = 0.2
+        self.c = 0.7
+        self.r = 0.3
         self.passos = 0
         self.saida_passos = []
 
@@ -32,7 +32,7 @@ class Grafo:
 
     # Função que exibe na tela cada vértice e sua lista de adjacência
     def print_adj_list (self): 
-        for node in self.nodes:
+        for node in range(self.V):
             print(node, '->', self.adj[node])
 
     # Função que exibe na tela a quantidade de vértices em cada lista de adjacência
@@ -51,14 +51,15 @@ class Grafo:
         x = random.uniform(0, 1)
 
         # Se x for menor ou igual a probabilidade de recuperação
-        if x <= self.r:
+        if x <= self.r and self.estado[v] == 'I':
             self.estado[v] = 'R'
-            self.DFSUtil(temp, (v + 1), visited)
+            if v < self.V - 1:
+                self.DFSUtil(temp, (v + 1), visited)
 
         y = random.uniform(0, 1)
 
         # Se y for menor ou igual a probabilidade de contágio
-        if y <= self.c and self.estado[v] != 'R':
+        if y <= self.c and self.estado[v] == 'S':
             self.estado[v] = 'I'
 
         # Salva o vértice na lista
@@ -74,7 +75,22 @@ class Grafo:
                 if visited[i] == False:
                     gv.append(i)
                     visited[i] = True
+
+                    x = random.uniform(0, 1)
+                    # Se x for menor ou igual a probabilidade de recuperação
+                    if x <= self.r and self.estado[i] == 'I':
+                        self.estado[i] = 'R'
+                        if i < self.V - 1:
+                            self.DFSUtil(temp, (i + 1), visited)
+
+                    y = random.uniform(0, 1)
+
+                    # Se y for menor ou igual a probabilidade de contágio
+                    if y <= self.c and self.estado[v] == 'S':
+                        self.estado[i] = 'I'
+
                     temp.append(i)
+
             del(gv[len(gv)-1])
         
         return temp

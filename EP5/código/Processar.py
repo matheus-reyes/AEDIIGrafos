@@ -15,7 +15,7 @@ print ("Começou!")
 ini = time.time()
 
 # Abre o arquivo e o lê com 'read' depois armazena em entrada_txt Encontros
-entrada_txt = open('EP5/dados/traducao3.txt', 'r')
+entrada_txt = open('EP5/dados/teste.txt', 'r')
 
 # Pula as primeiras linhas da entrada referentes ao: número de vértices e arestas | nome da coluna 
 next(entrada_txt)
@@ -27,7 +27,7 @@ all_edges = []
 
 nos = 0
 
-while nos < 5181:
+while nos < 11:
     nodes.append(str(nos))
     nos += 1
 
@@ -51,20 +51,28 @@ for u,v in all_edges:
 entrada_txt.close()
 
 # Inicia a análise dos vértices
-grafo.SIR()
+while 'I' in grafo.estado:
+    grafo.SIR()
+
 
 # Exibe o número de passos com os dados da situação da pessoa
-saida_passos = (grafo.saida_passos)
+saida = list() 
+
+# Remove duplicados
+for sublist in grafo.saida_passos:
+    if sublist not in saida:
+        saida.append(sublist)
 
 # Escreve no arquivo de saída a lista de listas do SIR
-# with open('EP5/dados/saida_09_02.pkl', 'wb') as f:
-#     pickle.dump(saida_passos, f)
-# f.close()
+with open('EP5/dados/saida_07_03.pkl', 'wb') as f:
+    pickle.dump(saida, f)
+f.close()
 
-# # Apenas para ler o arquivo de saída
-with open('EP5/dados/saida_06_05.pkl', 'rb') as fb:
-    mynewlist = pickle.load(fb)
-print(mynewlist)
+
+# Apenas para ler o arquivo de saída
+# with open('EP5/dados/saida_07_03.pkl', 'rb') as fb:
+#     mynewlist = pickle.load(fb)
+# print(mynewlist)
 
 # Calcula o tempo de execução ao final do processamento
 fim = time.time()
